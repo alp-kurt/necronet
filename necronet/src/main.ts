@@ -1,24 +1,32 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+// main.js
+import * as PIXI from 'pixi.js';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// Create app
+const app = new PIXI.Application({
+  
+  // Make it responsive
+  resizeTo: window, 
+ 
+  backgroundColor: 0x1e1e1e, 
+  resolution: window.devicePixelRatio || 1,
+  autoDensity: true,
+});
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// Add canvas to DOM
+document.body.appendChild(app.view);
+
+// Example graphic
+const circle = new PIXI.Graphics();
+circle.beginFill(0xffffff);
+circle.drawCircle(0, 0, 50);
+circle.endFill();
+circle.x = app.renderer.width / 2;
+circle.y = app.renderer.height / 2;
+
+app.stage.addChild(circle);
+
+// Resize handler
+window.addEventListener('resize', () => {
+  circle.x = app.renderer.width / 2;
+  circle.y = app.renderer.height / 2;
+});
