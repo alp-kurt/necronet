@@ -5,6 +5,7 @@ export class Resizer {
   private container: Container;
   private baseWidth: number;
   private baseHeight: number;
+  private layoutCallbacks: (() => void)[] = [];
 
   constructor(app: Application, container: Container, baseWidth: number, baseHeight: number) {
     this.app = app;
@@ -12,8 +13,13 @@ export class Resizer {
     this.baseWidth = baseWidth;
     this.baseHeight = baseHeight;
 
-    this.resize(); // Initial resize
-    window.addEventListener('resize', this.resize); // Bind resize
+    this.resize();
+    window.addEventListener('resize', this.resize);
+  }
+
+  addLayoutCallback(callback: () => void) {
+    this.layoutCallbacks.push(callback);
+    callback(); // Run once immediately
   }
 
   private resize = () => {
@@ -29,6 +35,8 @@ export class Resizer {
 
     this.container.x = (screenWidth - this.baseWidth * scale) / 2;
     this.container.y = (screenHeight - this.baseHeight * scale) / 2;
+
+    this.layoutCallbacks.forEach(cb => cb());
 
     console.log('[Resizer] Resized to:', screenWidth, screenHeight, 'Scale:', scale.toFixed(2));
   };
