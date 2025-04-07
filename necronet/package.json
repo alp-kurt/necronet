@@ -1,7 +1,7 @@
 {
   "name": "necronet",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,11 +12,11 @@
     "deploy": "gh-pages -d dist"
   },
   "standard-version": {
-  "changelogFile": "frontend/CHANGELOG.md",
-  "skip": {
-    "tag": false
-  }
-},
+    "changelogFile": "frontend/CHANGELOG.md",
+    "skip": {
+      "tag": false
+    }
+  },
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "standard-version": "^9.5.0",
