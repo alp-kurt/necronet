@@ -1,0 +1,29 @@
+{
+  "name": "necronet",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "release": "standard-version",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "standard-version": {
+    "changelogFile": "frontend/CHANGELOG.md",
+    "skip": {
+      "tag": false
+    }
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0",
+    "standard-version": "^9.5.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "pixi.js": "^8.9.1"
+  }
+}
