@@ -1,5 +1,5 @@
 import { Application, Container } from 'pixi.js';
-import { Resizer } from './resizer';
+import { Resizer } from './utils/resizer';
 import { createHeader } from './ui/header';
 import { createFooter } from './ui/footer';
 import { SceneManager } from './core/SceneManager';

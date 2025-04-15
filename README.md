@@ -14,7 +14,6 @@ You're no longer the classic hooded figure with a scythe — you're a contractor
 
 - Every task is generated using public APIs (users, avatars, facts, excuses).
 - You receive a location and avatar for your target.
-- (Planned) You’ll check the weather at their location before initiating contact.
 - The soul might recognize you and try to escape death with excuses.
 - Your job: Accept or reject their excuses. Make decisions. Meet quotas.
 
@@ -23,26 +22,40 @@ You're no longer the classic hooded figure with a scythe — you're a contractor
 ## Features
 
 - **Random User Integration** – Meet your soul targets from the [randomuser.me](https://randomuser.me) API.
-- **Weather Check** – (Planned) React to real-time weather from the user’s location.
-- **Excuse Generator** – Hear out hilarious excuses before you judge.
-- **Modular Scenes** – Built with a finite state machine approach like Unity’s scene system.
-- **Responsive UI** – Header, footer, and scaling behavior that adapts across devices.
-- **Extensible Design** – Easy to add new APIs, mechanics, and systems.
+- **Excuse & Fact Generators** – Listen to hilarious excuses or learn a fact before making a judgment.
+- **Scene System** – Modular design using finite state machines (inspired by Unity).
+- **Responsive Layout** – Header, footer, and scale-aware design.
+- **Firebase Analytics Integration** – Track user interactions with custom events:
+  - `fetched_people` – When new soul tasks are fetched
+  - `soul_killed` – When a soul is harvested
+  - `soul_released` – When a soul is released
+  - `soul_given_another_chance` – When you let someone speak again
+  - `task_initiated` – When you proceed with a selected soul
+
+---
+
+## Analytics Disclaimer
+
+This game uses **Google Analytics** and **third-party public APIs** to track basic, anonymous user interactions. The data collected is used solely to improve gameplay experience and performance tracking.  
+**We do not collect personal information or use cookies directly.**  
+API responses (like excuses or facts) are fetched in real-time and may vary.  
+> By continuing to play, you agree to this setup.
 
 ---
 
 ## Changelog
 
-You can track all updates and changes in [CHANGELOG](/frontend/CHANGELOG.md).
+You can track all updates and changes in [CHANGELOG](/necronet/CHANGELOG.md).
 
 ---
 
 ## Tech Stack
 
-- **PixiJS 8.9.1** – Rendering engine
-- **TypeScript** – Typed, modular architecture
-- **Vite** – Dev tooling & hot reload
-- **Public APIs** – randomuser.me, dicebear, open-meteo (planned), useless facts, excuse generator
+- **PixiJS 8.9.1** – WebGL 2D renderer
+- **TypeScript** – Strong-typed architecture
+- **Vite** – Development server & bundler
+- **Firebase Analytics** – Event tracking for gameplay
+- **Public APIs** – randomuser.me, dicebear, useless facts, excuse generator
 - **CI/CD Pipeline** - GitHub Actions and GitHub Pages
 
 ---
@@ -60,14 +73,31 @@ npm run build
 
 ---
 
+## .env Setup
+
+To use Firebase Analytics, create a `.env` file in your root with the following:
+
+VITE_FIREBASE_API_KEY=your_api_key  
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain  
+VITE_FIREBASE_PROJECT_ID=your_project_id  
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket  
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_id  
+VITE_FIREBASE_APP_ID=your_app_id  
+VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+
+These variables are injected automatically via [Vite's environment system](https://vitejs.dev/guide/env-and-mode.html). Never commit your actual API keys!
+
+---
+
 ## Folder Structure
 src/
 - core/             # SceneManager, IScene, Config
 - scenes/           # GameScene, MainMenuScene, etc.
 - ui/               # Header, Footer, Buttons, Text elements
 - utils/            # API fetchers like fetchUser, fetchExcuse
-- resizer.ts        # Responsive layout handler
+- firebase.ts       # Firebase Initialization
 - main.ts           # Entry point
+- ../env            # Create your local .env file with your own firebase config
 
 ---
 
@@ -92,5 +122,5 @@ Under the following terms:
 
 ## Developer
 
-Developed by Alp Kurt
+Developed by [Alp Kurt](https://alpkurt.com)
 Contact: krtalp@gmail.com

@@ -1,5 +1,16 @@
 import { Text } from 'pixi.js';
 
+/**
+ * Creates a `Text` object containing a randomly fetched excuse from an external API.
+ *
+ * This function performs the following:
+ * - Initializes a loading text.
+ * - Fetches a random excuse from the `excuser-three.vercel.app` API.
+ * - If the response is valid, sets the text to the excuse.
+ * - If the fetch fails or the response is invalid, displays a fallback message.
+ *
+ * @returns A `Promise<Text>` that resolves to a PixiJS Text object showing the excuse.
+ */
 export async function createRandomExcuseText(): Promise<Text> {
   const text = new Text({
     text: 'Loading excuse...',
