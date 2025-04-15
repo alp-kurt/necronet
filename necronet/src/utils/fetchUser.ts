@@ -1,5 +1,16 @@
 import { Texture } from 'pixi.js';
 
+/**
+ * Fetches a random user's name and generates a unique avatar texture using DiceBear.
+ *
+ * This function uses the `randomuser.me` API to get a name, then uses that name to
+ * create a unique avatar using DiceBear's "notionists" avatar style.
+ * The avatar image is converted into a PixiJS `Texture` for rendering in the game.
+ *
+ * @returns A Promise that resolves to an object containing:
+ *  - `fullName`: The randomly generated full name (first + last)
+ *  - `avatarTexture`: A PixiJS texture generated from the DiceBear avatar
+ */
 export async function fetchRandomUserWithAvatar(): Promise<{
   fullName: string;
   avatarTexture: Texture;

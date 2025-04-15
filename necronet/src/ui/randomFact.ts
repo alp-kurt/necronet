@@ -1,5 +1,16 @@
 import { Text } from 'pixi.js';
 
+/**
+ * Creates a `Text` object containing a randomly fetched fact from the `uselessfacts.jsph.pl` API.
+ *
+ * This function performs the following:
+ * - Initializes a placeholder loading text.
+ * - Fetches a random useless fact in English.
+ * - If the response contains a fact, displays it.
+ * - If the response is invalid or fetch fails, shows an error or fallback message.
+ *
+ * @returns A `Promise<Text>` that resolves to a PixiJS `Text` object with the fact content.
+ */
 export async function createRandomFactText(): Promise<Text> {
   const text = new Text({
     text: 'Loading fact...',
