@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/necronet/'
+  base: process.env.DEPLOY_TARGET === 'github' ? '/necronet/' : './',
 });
