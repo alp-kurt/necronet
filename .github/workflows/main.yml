@@ -36,16 +36,22 @@ jobs:
           echo "VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }}" >> .env
           echo "VITE_FIREBASE_MEASUREMENT_ID=${{ secrets.VITE_FIREBASE_MEASUREMENT_ID }}" >> .env
 
-      - name: Build project
+      - name: Build for GitHub Pages
         run: |
           cd necronet
-          npm run build
+          DEPLOY_TARGET=github npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./necronet/dist
+
+      - name: Rebuild for Firebase Hosting
+        run: |
+          cd necronet
+          rm -rf dist
+          npm run build
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
