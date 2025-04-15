@@ -8,6 +8,19 @@ interface Props {
   avatarSpriteRef: { current: Sprite | null };
 }
 
+/**
+ * Creates a button labeled "Fetch Random User" that, when clicked,
+ * fetches a fake user from randomuser.me and displays their name and avatar.
+ *
+ * This utility is primarily intended for **testing and prototyping** purposes
+ * to quickly visualize dynamic user data and validate rendering logic.
+ *
+ * @param container - The PIXI container to which the avatar sprite will be added.
+ * @param gameWidth - The width of the game scene, used for centering UI elements.
+ * @param nameText - A reference to the text component that will display the user's name.
+ * @param avatarSpriteRef - A mutable reference object to keep track of the current avatar sprite.
+ * @returns A PIXI Container containing the styled fetch button.
+ */
 export function createFetchUserButton({
   container,
   gameWidth,
@@ -16,11 +29,13 @@ export function createFetchUserButton({
 }: Props): Container {
   const wrapper = new Container();
 
+  // Create the graphical button
   const button = new Graphics();
   button.fill({ color: 0x3333ff }).roundRect(0, 0, 300, 60, 15);
   button.eventMode = 'static';
   button.cursor = 'pointer';
 
+  // Label
   const buttonText = new Text({
     text: 'Fetch Random User',
     style: {
@@ -34,11 +49,12 @@ export function createFetchUserButton({
   buttonText.y = button.height / 2;
   button.addChild(buttonText);
 
-  // Position the wrapper instead of the button
+  // Center the wrapper horizontally
   wrapper.x = gameWidth / 2 - 150;
   wrapper.y = 320;
   wrapper.addChild(button);
 
+  // On click, fetch a new user and display it
   button.on('pointerdown', async () => {
     nameText.text = 'Fetching...';
 
