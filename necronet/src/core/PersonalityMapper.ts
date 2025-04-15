@@ -1,3 +1,5 @@
+import type { PersonalityType } from './Person';
+
 export class PersonalityMapper {
   /**
    * RANDOMLY determines a user's personality type by extracting the last digit of their phone number.
