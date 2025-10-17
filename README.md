@@ -3,7 +3,7 @@
 A darkly satirical SaaS simulation built with **PixiJS**, where you take on the role of a soul-collecting freelancer in a bureaucratic post-death gig economy. Welcome to NecroNet — your go-to cloud platform for tracking mortal expiration and gathering the recently departed.
 > A digital solution for supernatural logistics.
 > Currently in early development.
-> [Play latest development build](https://pabron7.github.io/necronet/)
+> [Play latest development build](https://alp-kurt.github.io/necronet/)
 ---
 
 ## Concept
